@@ -331,7 +331,7 @@ export default {
             item.author = response.data[i].作者;
             item.price = response.data[i].价格;
             item.src = require("../img/" + response.data[i].图书标题 + ".jpg");
-            console.log(item.src);
+     
 
             i++;
           }
