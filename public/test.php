@@ -35,7 +35,8 @@ if ($nums < 1) {
 
     $obj = $result->fetch_object();
     $name = $obj->name;
-    echo json_encode($name);
+    echo $name;
 }
 
 
+?>

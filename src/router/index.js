@@ -6,10 +6,7 @@ import Home from '../components/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/login',
-    component: Login
-  },{
+ {
     path:'/home',
     component:Home
   },{

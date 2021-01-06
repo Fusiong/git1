@@ -1,7 +1,10 @@
 <template>
   <div class="login_container">
     <div class="login_box">
-      <a href="home">跳转</a>
+      <div class="imgdiv">
+        <img src="@/assets/Steam.png" alt="" />
+      </div>
+      <a href="Home">跳转</a>
 
       <el-form
         :model="loginForm"
@@ -76,20 +79,22 @@ export default {
     login() {
       this.$refs.loginFormRef.validate((valid) => {
         if (valid) {
-          let data=new FormData();
-          data.append('username',this.loginForm.username);
-          data.append('password',this.loginForm.password);
+          let data = new FormData();
+          data.append("username", this.loginForm.username);
+          data.append("password", this.loginForm.password);
 
           this.$axios
             .post("http://localhost/Vue/vue05/public/test.php", data)
-            .then(function(response){
-              if(response.data!=""){
-              alert("欢迎登陆,"+response.data);
-              }else{
+            .then((response) => {
+              console.log(response);
+              if (response.data != "") {
+                alert("欢迎登陆," + response.data);
+                sessionStorage.setItem("userName", response.data);
+                window.location.href = "home";
+              } else {
                 alert("账号或密码有误");
               }
             });
-
         } else {
           return;
         }
@@ -114,7 +119,7 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  padding-right: 60px;
+  padding-right: 40px;
 }
 
 .letterbtns {
@@ -125,5 +130,16 @@ export default {
 .rightbtns {
   position: relative;
   float: right;
+}
+
+.imgdiv {
+  margin: 0px auto;
+  text-align: center;
+
+  img {
+    width: 40%;
+    height: 40%;
+    background-color: #eee;
+  }
 }
 </style>

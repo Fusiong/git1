@@ -1,25 +1,86 @@
 <template>
   <div class="cutdiv">
-    <span class="demonstration">默认 Hover 指示器触发</span>
-
-    <el-carousel :autoplay="autoplay" height="550px">
+    <el-carousel :autoplay="autoplay" height="600px">
       <el-carousel-item v-for="item in 4" :key="item">
+        
         <ul>
-          <li v-for="item in 8" :key="item">
+      
+          <li
+            v-for="index in lists.slice(0, 8)"
+            :key="index.id"
+            v-show="item == 1"
+          >
             <div class="pic">
-            <div class="imgdiv">
-              <img src="@/img/a.jpg">
+              <div class="imgdiv">
+                <img :src="index.src" />
+              </div>
+
+              <p class="title">{{ index.title }}</p>
+
+              <p class="author">{{ index.author }}</p>
+
+              <p class="price">￥{{ index.price }}</p>
             </div>
-              
-              <p class="title">标题我是火车王</p>
+          </li>
+       
 
-              <p class="author">作者啊啊啊</p>
+          <li
+            v-for="index in lists.slice(8, 16)"
+            :key="index.id"
+            v-show="item == 2"
+          >
+            <div class="pic">
+              <div class="imgdiv">
+                <img :src="index.src" />
+              </div>
 
-              <p class="price">￥10.50</p>
-              
+              <p class="title">{{ index.title }}</p>
+
+              <p class="author">{{ index.author }}</p>
+
+              <p class="price">￥{{ index.price }}</p>
+            </div>
+          </li>
+
+          <li
+            v-for="index in lists.slice(16, 24)"
+            :key="index.id"
+            v-show="item == 3"
+          >
+            <div class="pic">
+              <div class="imgdiv">
+                <img :src="index.src" />
+              </div>
+
+              <p class="title">{{ index.title }}</p>
+
+              <p class="author">{{ index.author }}</p>
+
+              <p class="price">￥{{ index.price }}</p>
+            </div>
+          </li>
+
+          <li
+            v-for="index in lists.slice(24, 32)"
+            :key="index.id"
+            v-show="item == 4"
+          >
+            <div class="pic">
+              <div class="imgdiv">
+                <img :src="index.src" />
+              </div>
+
+              <p class="title">{{ index.title }}</p>
+
+              <p class="author">{{ index.author }}</p>
+
+              <p class="price">￥{{ index.price }}</p>
             </div>
           </li>
         </ul>
+
+       
+
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -30,7 +91,254 @@ export default {
   data() {
     return {
       autoplay: false,
+      lists: [
+        {
+          id: 1,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 2,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 3,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 4,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 5,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 6,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 7,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 8,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 9,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 10,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 11,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 12,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 13,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 14,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 15,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 16,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 17,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 18,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 19,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 20,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 21,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 22,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 23,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 24,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 25,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 26,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 27,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 28,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 29,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 30,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 31,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+        {
+          id: 32,
+          title: "标题",
+          author: "作者",
+          price: 20.0,
+          src: require("../img/a.jpg"),
+        },
+      ],
     };
+  },
+  mounted() {
+    this.$axios
+      .post("http://localhost/Vue/vue05/public/recommend.php")
+      .then((response) => {
+        console.log(response.data);
+        if (response.data != "") {
+          let i = 0;
+          for (let item of this.lists) {
+            item.title = response.data[i].图书标题;
+            item.author = response.data[i].作者;
+            item.price = response.data[i].价格;
+            item.src = require("../img/" + response.data[i].图书标题 + ".jpg");
+            console.log(item.src);
+
+            i++;
+          }
+        } else {
+          return;
+        }
+      });
   },
 };
 </script>
@@ -43,21 +351,7 @@ export default {
   text-align: center;
 }
 
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
 
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
 
 .cutdiv li {
   float: left;
@@ -68,6 +362,7 @@ export default {
   margin: 10px 0 0 0;
 }
 
+
 .pic {
   text-align: center;
   position: relative;
@@ -77,7 +372,7 @@ export default {
 
 .title {
   padding: 5px 1px 1px;
-  text-align: center;
+  text-align: left;
   display: block;
   margin: 0px auto;
   height: 32px;
@@ -89,27 +384,28 @@ export default {
   color: #999;
   height: 24px;
   line-height: 24px;
-   text-align: left;
+  text-align: left;
 }
 
-
-.price{
-    padding-top: 3px;
-    margin: 0 auto;
-    color: #DA0000;
-    font-weight: bold;
-    font-size: 15px;
-    text-align: left;
+.price {
+  padding-top: 3px;
+  margin: 0 auto;
+  color: #da0000;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: left;
 }
 
-img{
-  width:100px;
+img {
+  width: 100px;
   height: 160px;
 }
 
-.imgdiv{
-   width:100px;
+.imgdiv {
+  width: 100px;
   height: 160px;
 }
+
+
 
 </style>

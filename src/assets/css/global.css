@@ -9,3 +9,7 @@ html,body,#app{
 ul{
     list-style: none;
   }
+
+  .el-carousel__button{
+      background-color: #d3dce6;
+  }

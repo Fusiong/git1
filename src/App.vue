@@ -7,8 +7,12 @@
           <span>你好,欢迎光临二手书买卖商城</span>
 
           <ul class="topBar">
-            <li><a href="login">请登录</a></li>
-            <li>免费注册</li>
+            <li>
+              <a :href="hrefs">{{ sessionuser }}</a>
+            </li>
+            <li v-if="register">免费注册</li>
+             <button v-else  @click="exit">[退出]</button>
+
             <li>我的订单</li>
             <li>联系客服</li>
           </ul>
@@ -18,12 +22,7 @@
 
     <div class="searchdiv">
       <img src="@/assets/Steam.png" alt="" />
-      <el-form
-        :model="searchForm"
-        :rules="rules"
-        ref="searchFormmRef"
-        label-width="55px"
-      >
+      <el-form :model="searchForm" ref="searchFormmRef" label-width="55px">
         <div class="searchFrame">
           <el-autocomplete
             class="autowidth"
@@ -57,7 +56,24 @@ export default {
       searchForm: {
         key: "",
       },
+      hrefs: "login",
+      sessionuser: "请登录",
+      register: "true",
     };
+  },
+  mounted() {
+    let username = sessionStorage.getItem("userName");
+    if (username != null) {
+      this.sessionuser = username;
+      this.register = false;
+    }
+  },
+  methods: {
+    exit() {
+      this.register = true;
+      this.sessionuser = "请登录";
+      sessionStorage.setItem("userName", "");
+    },
   },
 };
 </script>
@@ -135,5 +151,9 @@ button {
   margin-top: 45px;
   margin-right: 100px;
   overflow: hidden;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
