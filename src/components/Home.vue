@@ -2,68 +2,10 @@
   <div class="cutdiv">
     <el-carousel :autoplay="autoplay" height="600px">
       <el-carousel-item v-for="item in 4" :key="item">
-        
         <ul>
-      
           <li
-            v-for="index in lists.slice(0, 8)"
+            v-for="index in lists.slice((item - 1) * 8, item * 8)"
             :key="index.id"
-            v-show="item == 1"
-          >
-            <div class="pic">
-              <div class="imgdiv">
-                <img :src="index.src" />
-              </div>
-
-              <p class="title">{{ index.title }}</p>
-
-              <p class="author">{{ index.author }}</p>
-
-              <p class="price">￥{{ index.price }}</p>
-            </div>
-          </li>
-       
-
-          <li
-            v-for="index in lists.slice(8, 16)"
-            :key="index.id"
-            v-show="item == 2"
-          >
-            <div class="pic">
-              <div class="imgdiv">
-                <img :src="index.src" />
-              </div>
-
-              <p class="title">{{ index.title }}</p>
-
-              <p class="author">{{ index.author }}</p>
-
-              <p class="price">￥{{ index.price }}</p>
-            </div>
-          </li>
-
-          <li
-            v-for="index in lists.slice(16, 24)"
-            :key="index.id"
-            v-show="item == 3"
-          >
-            <div class="pic">
-              <div class="imgdiv">
-                <img :src="index.src" />
-              </div>
-
-              <p class="title">{{ index.title }}</p>
-
-              <p class="author">{{ index.author }}</p>
-
-              <p class="price">￥{{ index.price }}</p>
-            </div>
-          </li>
-
-          <li
-            v-for="index in lists.slice(24, 32)"
-            :key="index.id"
-            v-show="item == 4"
           >
             <div class="pic">
               <div class="imgdiv">
@@ -78,9 +20,6 @@
             </div>
           </li>
         </ul>
-
-       
-
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -331,7 +270,6 @@ export default {
             item.author = response.data[i].作者;
             item.price = response.data[i].价格;
             item.src = require("../img/" + response.data[i].图书标题 + ".jpg");
-     
 
             i++;
           }
@@ -346,12 +284,11 @@ export default {
 
 <style lang="less" scoped>
 .cutdiv {
+  border: 1px solid rgb(220, 220, 220);
   margin: 0px auto;
   width: 750px;
   text-align: center;
 }
-
-
 
 .cutdiv li {
   float: left;
@@ -361,7 +298,6 @@ export default {
   width: 25%;
   margin: 10px 0 0 0;
 }
-
 
 .pic {
   text-align: center;
@@ -405,7 +341,4 @@ img {
   width: 100px;
   height: 160px;
 }
-
-
-
 </style>
