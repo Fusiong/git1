@@ -2,7 +2,7 @@
   <div class="login_container">
     <div class="login_box">
       <div class="imgdiv">
-        <img src="@/assets/Steam.png" alt="" />
+        <img src="../assets/Steam.png" alt="" />
       </div>
       <a href="Home">跳转</a>
 
@@ -35,8 +35,10 @@
           <el-button class="letterbtns" type="primary" @click="login" round
             >登陆</el-button
           >
-
+          <router-link to="/register">
           <el-button class="rightbtns" type="info" round>注册</el-button>
+          </router-link>
+
         </el-form-item>
       </el-form>
     </div>

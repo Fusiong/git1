@@ -262,7 +262,7 @@ export default {
     this.$axios
       .post("http://localhost/Vue/vue05/public/recommend.php")
       .then((response) => {
-        console.log(response.data);
+     
         if (response.data != "") {
           let i = 0;
           for (let item of this.lists) {

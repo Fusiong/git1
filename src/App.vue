@@ -10,7 +10,11 @@
             <li>
               <a :href="hrefs">{{ sessionuser }}</a>
             </li>
-            <li v-if="register">免费注册</li>
+            
+            <li v-if="register">
+              <a href="/login#/register">免费注册</a>
+            </li>
+
             <button v-else @click="exit">[退出]</button>
 
             <li>我的订单</li>
@@ -61,7 +65,7 @@
       </ul>
     </div>
     <div class="middelediv">
-      <router-view></router-view>
+      <router-view name="top"></router-view>
     </div>
 
     <div class="rightdiv">
@@ -174,15 +178,19 @@ export default {
   mounted() {
 
     let username = sessionStorage.getItem("userName");
-    if (username != null) {
+    
+    if (username == ""||username==null) {
+   
+    }else{
       this.sessionuser = username;
       this.register = false;
     }
 
+  
       this.$axios
       .post("http://localhost/Vue/vue05/public/sortlist.php")
       .then((response) => {
-        console.log(response.data);
+        
         if (response.data != "") {
           let i = 0;
           for (let item of this.sortlist) {
@@ -204,7 +212,7 @@ export default {
     exit() {
       this.register = true;
       this.sessionuser = "请登录";
-      sessionStorage.setItem("userName", "");
+      sessionStorage.setItem("userName","");
     },
   },
 };

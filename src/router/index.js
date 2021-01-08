@@ -8,7 +8,10 @@ Vue.use(VueRouter)
 const routes = [
  {
     path:'/home',
-    component:Home
+    components:{
+      default:Home,
+      top:Home,
+    }
   },{
     path:'/',
     redirect:'/home'

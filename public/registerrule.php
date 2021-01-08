@@ -15,7 +15,7 @@ $db_pwd = "123456";
 $db_name = "text";
 $db_port = 3306;
 $db = @new mysqli($db_host, $db_user, $db_pwd);
-
+$username = $_POST['username'];
 
 $con = mysqli_connect($db_host, $db_user, $db_pwd, $db_name, $db_port);
 if (!$con) {
@@ -25,18 +25,23 @@ if (!$con) {
 $db->query("SET NAMES 'utf8'");
 $db->select_db('text') or die("不能连接数据库");
 
-$sql = "SELECT * FROM `bookshop` order by `销量` DESC  LIMIT 0,8 ";
+$sql = "SELECT `username` FROM `user` ";
 $result = $db->query($sql);
 
 $i=0;
+$searcher=false;
 
 while ($obj = $result->fetch_object())
 {
-    $results[$i]=$obj;
-    $i++;
+ 
+    if($username==$obj->username){
+        $searcher=true;
+    }
+
 } 
 
-echo json_encode($results,JSON_UNESCAPED_UNICODE);
+echo json_encode($searcher,JSON_UNESCAPED_UNICODE);
+
 
 
 

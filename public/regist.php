@@ -15,7 +15,9 @@ $db_pwd = "123456";
 $db_name = "text";
 $db_port = 3306;
 $db = @new mysqli($db_host, $db_user, $db_pwd);
-
+$username = $_POST['username'];
+$password = $_POST['password'];
+$name=$_POST['name'];
 
 $con = mysqli_connect($db_host, $db_user, $db_pwd, $db_name, $db_port);
 if (!$con) {
@@ -24,21 +26,10 @@ if (!$con) {
 
 $db->query("SET NAMES 'utf8'");
 $db->select_db('text') or die("不能连接数据库");
-
-$sql = "SELECT * FROM `bookshop` order by `销量` DESC  LIMIT 0,8 ";
+$sql = "INSERT INTO `user`(`username`, `password`, `name`) VALUES ('$username','$password','$name') ";
 $result = $db->query($sql);
-
-$i=0;
-
-while ($obj = $result->fetch_object())
-{
-    $results[$i]=$obj;
-    $i++;
-} 
-
-echo json_encode($results,JSON_UNESCAPED_UNICODE);
-
-
-
-
+$nums = $result->num_rows;
+if ($nums > 0) {
+    echo json_encode($results,JSON_UNESCAPED_UNICODE);
+}
 ?>
