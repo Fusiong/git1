@@ -184,6 +184,7 @@ export default {
     }else{
       this.sessionuser = username;
       this.register = false;
+      this.hrefs="userInfo"
     }
 
   
@@ -212,6 +213,7 @@ export default {
     exit() {
       this.register = true;
       this.sessionuser = "请登录";
+      this.hrefs="login"
       sessionStorage.setItem("userName","");
     },
   },

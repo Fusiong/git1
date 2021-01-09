@@ -9,6 +9,11 @@ module.exports = {
               entry:'src/login.js',
               template:'public/login.html',
               filename:'login.html'
-          }
+          },
+          userInfo:{
+            entry:'src/userInfo.js',
+            template:'public/userInfo.html',
+            filename:'userInfo.html'
+          },
         }
       }
