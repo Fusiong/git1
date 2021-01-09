@@ -33,8 +33,8 @@
 
         <el-form-item>
           <el-button class="letterbtns" type="primary" @click="login" round
-            >登陆</el-button
-          >
+            >登陆</el-button>
+            
           <router-link to="/register">
           <el-button class="rightbtns" type="info" round>注册</el-button>
           </router-link>
