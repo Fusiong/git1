@@ -5,10 +5,9 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
     exit;
-}                      //这些是解决跨域问题的
+} 
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+//这些是解决跨域问题的
 
 $db_host = "127.0.0.1";
 $db_user = "root";
@@ -17,6 +16,11 @@ $db_name = "text";
 $db_port = 3306;
 $db = @new mysqli($db_host, $db_user, $db_pwd);
 
+$oldpass=$_POST['oldpass'];
+$newpass=$_POST['newpass'];
+$username=$_POST['username'];
+
+
 $con = mysqli_connect($db_host, $db_user, $db_pwd, $db_name, $db_port);
 if (!$con) {
     die("链接错误：" . mysqli_connect_error());
@@ -24,25 +28,11 @@ if (!$con) {
 
 $db->query("SET NAMES 'utf8'");
 $db->select_db('text') or die("不能连接数据库");
-
-$sql = "SELECT * FROM `user` WHERE `username` LIKE '$username' AND `password` LIKE '$password' ";
+$sql = "UPDATE `user` SET `password`='$newpass' WHERE `username` like '$username'";
 $result = $db->query($sql);
 $nums = $result->num_rows;
-
-if ($nums < 1) {
-    echo null;
-} else {
-    $obj = $result->fetch_object();
-    $name = $obj->name;
-    $account=$obj->username;
-    $gender=$obj->gender;
-    $phone=$obj->phonenumber;
-    $arrays[0]=$name;
-    $arrays[1]=$account;
-    $arrays[2]=$gender;
-    $arrays[3]=$phone;
-    echo json_encode($arrays,JSON_UNESCAPED_UNICODE);
+if ($nums > 0) {
+    echo json_encode($results,JSON_UNESCAPED_UNICODE);
 }
-
 
 ?>

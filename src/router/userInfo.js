@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Info from '../components/Info.vue'
+import pass from '../components/pass.vue'
+import addresses from '../components/addresses.vue'
 
 
 Vue.use(VueRouter)
@@ -13,7 +15,15 @@ const routes = [
   },{
     path:'',
     redirect :'/Info',
-  },
+  },{
+    path: '/pass',
+    name: "pass",
+    component: pass,
+  },{
+    path: '/addresses',
+    name: "addresses",
+    component: addresses,
+  }
 
 ]
 

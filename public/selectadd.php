@@ -5,10 +5,9 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
     exit;
-}                      //这些是解决跨域问题的
+} 
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+//这些是解决跨域问题的
 
 $db_host = "127.0.0.1";
 $db_user = "root";
@@ -16,6 +15,7 @@ $db_pwd = "123456";
 $db_name = "text";
 $db_port = 3306;
 $db = @new mysqli($db_host, $db_user, $db_pwd);
+$username = $_POST['username'];
 
 $con = mysqli_connect($db_host, $db_user, $db_pwd, $db_name, $db_port);
 if (!$con) {
@@ -25,24 +25,19 @@ if (!$con) {
 $db->query("SET NAMES 'utf8'");
 $db->select_db('text') or die("不能连接数据库");
 
-$sql = "SELECT * FROM `user` WHERE `username` LIKE '$username' AND `password` LIKE '$password' ";
+
+$sql = "SELECT * FROM `user` WHERE `username` LIKE '$username'  ";
 $result = $db->query($sql);
-$nums = $result->num_rows;
+$obj = $result->fetch_object();
 
-if ($nums < 1) {
-    echo null;
-} else {
-    $obj = $result->fetch_object();
-    $name = $obj->name;
-    $account=$obj->username;
-    $gender=$obj->gender;
-    $phone=$obj->phonenumber;
-    $arrays[0]=$name;
-    $arrays[1]=$account;
-    $arrays[2]=$gender;
-    $arrays[3]=$phone;
-    echo json_encode($arrays,JSON_UNESCAPED_UNICODE);
-}
+$address1 = $obj->address1;
+$address2 = $obj->address2;
+$address3 = $obj->address3;
+
+$results[0]=$address1;
+$results[1]=$address2;
+$results[2]=$address3;
+
+echo json_encode($results,JSON_UNESCAPED_UNICODE);
 
 
-?>

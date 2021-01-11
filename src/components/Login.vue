@@ -33,12 +33,12 @@
 
         <el-form-item>
           <el-button class="letterbtns" type="primary" @click="login" round
-            >登陆</el-button>
-            
-          <router-link to="/register">
-          <el-button class="rightbtns" type="info" round>注册</el-button>
-          </router-link>
+            >登陆</el-button
+          >
 
+          <router-link to="/register">
+            <el-button class="rightbtns" type="info" round>注册</el-button>
+          </router-link>
         </el-form-item>
       </el-form>
     </div>
@@ -88,10 +88,15 @@ export default {
           this.$axios
             .post("http://localhost/Vue/vue05/public/test.php", data)
             .then((response) => {
-              console.log(response);
+              console.log(response.data);
               if (response.data != "") {
-                alert("欢迎登陆," + response.data);
-                sessionStorage.setItem("userName", response.data);
+                alert("欢迎登陆," + response.data[0]);
+
+                sessionStorage.setItem("userName", response.data[0]);
+                sessionStorage.setItem("account", response.data[1]);
+                sessionStorage.setItem("gender", response.data[2]);
+                sessionStorage.setItem("phone", response.data[3]);
+
                 window.location.href = "home";
               } else {
                 alert("账号或密码有误");
