@@ -16,8 +16,8 @@
               <i class="el-icon-goods"></i>我的订单
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">购物车确认</el-menu-item>
-              <el-menu-item index="1-2">订单确认</el-menu-item>
+              <el-menu-item index="1-1">订单确认</el-menu-item>
+              <el-menu-item index="1-2">退款申请</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

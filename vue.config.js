@@ -15,5 +15,12 @@ module.exports = {
             template:'public/userInfo.html',
             filename:'userInfo.html'
           },
+          shoppage:{
+            entry:'src/shoppage.js',
+            template:'public/shoppage.html',
+            filename:'shoppage.html'
+          }
+
+
         }
       }

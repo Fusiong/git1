@@ -6,6 +6,11 @@
         <router-link to="/login">
           <a class="login">请登录</a>
         </router-link>
+
+        <a href="Home">
+          <el-button type="primary" icon="el-icon-house" circle></el-button>
+        </a>
+        
       </div>
 
       <div class="imgdiv">
@@ -166,7 +171,7 @@ export default {
 }
 
 .header a {
-  margin-right: 120px;
+  margin-right: 50px;
   text-decoration: none;
   color: red;
 }

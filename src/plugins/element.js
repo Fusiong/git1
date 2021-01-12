@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Aside, Autocomplete, Button, Carousel, CarouselItem, Col, Container, Dropdown, DropdownItem, DropdownMenu, Header, Image, Main, Menu, MenuItem, MenuItemGroup, Radio, Row, Submenu, Table, TableColumn } from 'element-ui'
+import { Aside, Autocomplete, Button, Carousel, CarouselItem, Col, Container, Dropdown, DropdownItem, DropdownMenu, Header, Image, InputNumber, Main, Menu, MenuItem, MenuItemGroup, Radio, Row, Submenu, Table, TableColumn } from 'element-ui'
 import {Form,FormItem,Input} from 'element-ui'
 
 
@@ -28,4 +28,5 @@ Vue.use(TableColumn)
 Vue.use(Aside)
 Vue.use(Submenu)
 Vue.use(Radio)
+Vue.use(InputNumber)
 

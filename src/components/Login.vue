@@ -3,8 +3,10 @@
     <div class="login_box">
       <div class="imgdiv">
         <img src="../assets/Steam.png" alt="" />
+        <a  href="Home">
+          <el-button type="primary" icon="el-icon-house" circle></el-button>
+        </a>
       </div>
-      <a href="Home">跳转</a>
 
       <el-form
         :model="loginForm"
@@ -142,11 +144,19 @@ export default {
 .imgdiv {
   margin: 0px auto;
   text-align: center;
+  margin-bottom: 20px;
 
   img {
     width: 40%;
     height: 40%;
     background-color: #eee;
   }
+
+  a{
+    float: right;
+  }
+
+  
+ 
 }
 </style>

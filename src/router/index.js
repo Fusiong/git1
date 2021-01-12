@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
+import detail from '../components/detail.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,10 @@ const routes = [
   },{
     path:'/',
     redirect:'/home'
+  },{
+    path:'/detail',
+    component:detail,
+    name:'detail'
   }
 ]
 
