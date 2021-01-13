@@ -84,6 +84,7 @@ export default {
 
     if (username == "" || username == null) {
       window.location.href = "home";
+       return;
     }
 
     this.loginForm.username = account;
@@ -102,6 +103,7 @@ export default {
         let username = sessionStorage.getItem("userName");
       if (username == "" || username == null) {
         window.location.href = "home";
+         return;
       } else {
         this.$refs.loginFormRef.validate((valid) => {
           if (valid) {

@@ -14,7 +14,7 @@ const routes = [
     path:'',
     redirect :'/login',
   },
-  {
+  {    
     path:'/register',
     name:"register",
     component: Regsiter

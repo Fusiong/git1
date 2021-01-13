@@ -79,6 +79,7 @@ export default {
     let username = sessionStorage.getItem("userName");
     if (username == "" || username == null) {
       window.location.href = "home";
+       return;
     }
   },
 
@@ -88,6 +89,7 @@ export default {
       let account = sessionStorage.getItem("account");
       if (username == "" || username == null) {
         window.location.href = "home";
+         return;
       } else if (this.loginForm.newpass != this.loginForm.repepass) {
         alert(username + ",你输入两次新密码不一样");
       } else {

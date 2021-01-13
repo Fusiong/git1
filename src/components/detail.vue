@@ -14,7 +14,7 @@
           <li>出版社:{{ book.press }}</li>
           <li>ISBN:{{ book.ISBN }}</li>
         </ul>
-      
+
         <ul>
           <li>出版年份:{{ book.year }}</li>
           <li>作者:{{ book.author }}</li>
@@ -23,24 +23,30 @@
       </div>
 
       <div class="buy_wrap">
-        <h2>本书价格:<span class="red">￥{{ book.price }}</span></h2>
+        <h2>
+          本书价格:<span class="red">￥{{ book.price }}</span>
+        </h2>
       </div>
-      
+
       <div class="buy_wrap">
-        <h2>总共价格:<span class="red">￥{{ book.price*num }}</span></h2>
+        <h2>
+          总共价格:<span class="red">￥{{ book.price * num }}</span>
+        </h2>
       </div>
 
-      
-      <div class="buy_number" >
-          <span >购买数量:</span>
-         <el-input-number v-model="num"  :min="1" :max="20" label="描述文字">
-         </el-input-number>
+      <div class="buy_number">
+        <span>购买数量:</span>
+        <el-input-number v-model="num" :min="1" :max="20" label="描述文字">
+        </el-input-number>
 
-         <el-button style="margin-left:80px;" type="danger" icon="el-icon-shopping-cart-full" >加入购物车</el-button>
+        <el-button
+          style="margin-left: 80px"
+          type="danger"
+          @click="goshopping"
+          icon="el-icon-shopping-cart-full"
+          >加入购物车</el-button
+        >
       </div>
-
-
-
     </div>
   </div>
 </template>
@@ -60,31 +66,67 @@ export default {
         price: 20.0,
         src: require("../img/a.jpg"),
       },
-        num:1
+      num: 1,
     };
   },
   mounted() {
+    let data = new FormData();
+    let bookname = this.Path;
+    data.append("bookname", bookname);
+    const that = this;
+    this.$axios
+      .post("http://localhost/Vue/vue05/public/detail.php", data)
+      .then((response) => {
+        if (response.data) {
+          that.book.ISBN = response.data[0];
+          that.book.title = response.data[1];
+          that.book.author = response.data[2];
+          that.book.press = response.data[3];
+          that.book.year = response.data[4];
+          that.book.price = response.data[5];
+          that.book.src = require("../img/" + that.book.title + ".jpg");
+        } else {
+          alert("删除失败");
+        }
+      });
+  },
+  methods: {
+    goshopping() {
+      console.log(this.book);
+
+      let username = sessionStorage.getItem("userName");
+
+      if (username == "" || username == null) {
+        alert("请先登录");
+        window.location.href = "login";
+        return;
+      }
+
+      let account = sessionStorage.getItem("account");
+
+
       let data = new FormData();
-      let bookname = this.Path;
-      data.append("bookname", bookname);
-      const that=this;
+      data.append("title", this.book.title);
+      data.append("username", account);
+      data.append("price", this.book.price);
+      data.append("number", this.num);
+
+      const that = this;
+
       this.$axios
-        .post("http://localhost/Vue/vue05/public/detail.php", data)
+        .post("http://localhost/Vue/vue05/public/addshopping.php", data)
         .then((response) => {
-           if(response.data){
-             console.log(response.data);
-             that.book.ISBN=response.data[0];
-             that.book.title=response.data[1];
-             that.book.author=response.data[2];
-             that.book.press=response.data[3];
-             that.book.year=response.data[4];
-             that.book.price=response.data[5];
-             that.book.src=require("../img/"+that.book.title+".jpg");
-           }else{
-             alert("删除失败");
-           }
+          if (response.data[0]) {
+            alert("购买成功，当前图书购买数量合计:"+response.data[1]+"本");
+            const {href} = this.$router.resolve({ path: '/goshopping'})
+            window.open(href, '_blank')
+          } else {
+            alert("购买成功，当前图书购买数量合计:"+response.data[1]+"本");
+            const {href} = this.$router.resolve({ path: '/goshopping'})
+            window.open(href, '_blank')
+          }
         });
-    
+    },
   },
 };
 </script>
@@ -106,13 +148,13 @@ export default {
   float: left;
 }
 
-span{
+span {
   padding: 0px;
 }
 
 .deimg {
   margin-top: 22px;
- 
+
   width: 200px;
   height: 304px;
 }
@@ -130,10 +172,9 @@ span{
   border-bottom: 1px dotted #eaeaea;
 }
 
-.detail_wrap ul{
-  
+.detail_wrap ul {
   padding: 5px 0;
-  
+
   overflow: hidden;
 }
 
@@ -147,22 +188,21 @@ span{
   white-space: nowrap;
 }
 
-.red{
+.red {
   color: red;
 }
 
-.buy_number{  
+.buy_number {
   position: absolute;
   bottom: 20px;
 }
 
-.buy_number span{
+.buy_number span {
   margin-right: 20px;
 }
 
-.spantitle{
+.spantitle {
   font-weight: bolder;
   font-size: 20px;
 }
-
 </style>

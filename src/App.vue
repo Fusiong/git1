@@ -8,7 +8,7 @@
 
           <ul class="topBar">
             <li>
-              <a :href="hrefs" >{{ sessionuser }}</a>
+              <a :href="hrefs">{{ sessionuser }}</a>
             </li>
 
             <li v-if="register">
@@ -16,6 +16,7 @@
             </li>
 
             <button v-else @click="exit">[退出]</button>
+       
 
             <li>我的订单</li>
             <li>联系客服</li>
@@ -26,7 +27,7 @@
 
     <div class="searchdiv">
       <router-link to="home">
-      <img src="./assets/Steam.png" class="topimg" alt="" />
+        <img src="./assets/Steam.png" class="topimg" alt="" />
       </router-link>
       <el-form :model="searchForm" ref="searchFormmRef" label-width="55px">
         <div class="searchFrame">
@@ -35,19 +36,22 @@
             placeholder="书名、作者、出版社、ISBN"
             v-model="state"
             :fetch-suggestions="querySearchAsync"
-             @select="handleSelect"
+            @select="handleSelect"
           >
             <el-button
               type="primary"
               slot="append"
               icon="el-icon-search"
+              @click="searchpage(state)"
             ></el-button>
           </el-autocomplete>
         </div>
 
         <div class="remind">
-          <i class="el-icon-shopping-cart-2"></i>
-          <span>你的购物车0本</span>
+          <router-link to="goshopping">
+            <i class="el-icon-shopping-cart-2"></i>
+            <span>你的购物车</span>
+          </router-link>
         </div>
       </el-form>
     </div>
@@ -55,7 +59,6 @@
     <div class="alldiv">
       <router-view></router-view>
     </div>
-    
   </div>
 </template>
 
@@ -64,45 +67,38 @@ export default {
   name: "app",
   data() {
     return {
-      searchForm:{},
-      state:'',
+      searchForm: {},
+      state: "",
       hrefs: "login",
       sessionuser: "请登录",
       register: "true",
-      allbook:[],
+      allbook: [],
     };
   },
   mounted() {
     let username = sessionStorage.getItem("userName");
-
     if (username == "" || username == null) {
     } else {
       this.sessionuser = username;
       this.register = false;
       this.hrefs = "userInfo";
     }
-    const that=this;
+    const that = this;
 
-      this.$axios
+    this.$axios
       .post("http://localhost/Vue/vue05/public/selectbook.php")
       .then((response) => {
-        if (response.data != "") {  
-          let i=0;
-        
-          for(let items of response.data){
-            let item={value:items.图书标题};
+        if (response.data != "") {
+          let i = 0;
+
+          for (let items of response.data) {
+            let item = { value: items.图书标题 };
             that.allbook.push(item);
           }
-
-          console.log(that.allbook);
-    
         } else {
           return;
         }
       });
-
-
-
   },
   methods: {
     exit() {
@@ -111,24 +107,32 @@ export default {
       this.hrefs = "login";
       sessionStorage.setItem("userName", "");
     },
-     querySearchAsync(queryString, cb){
-      let allbook=this.allbook;
-      let results=queryString ? allbook.filter(this.createStateFilter(queryString)) : allbook;
+    querySearchAsync(queryString, cb) {
+      let allbook = this.allbook;
+      let results = queryString
+        ? allbook.filter(this.createStateFilter(queryString))
+        : allbook;
       cb(results);
-      },
+    },
 
-      createStateFilter(queryString) {
-        return (state) => {
-          return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) !=-1);
-        };
-      },
+    createStateFilter(queryString) {
+      return (state) => {
+        return (
+          state.value.toLowerCase().indexOf(queryString.toLowerCase()) != -1
+        );
+      };
+    },
 
-
-    handleSelect(item){
+    handleSelect(item) {
       console.log(item.value);
     },
-    
-
+    searchpage(state) {
+      const { href } = this.$router.resolve({
+        path: "/detailpage",
+        query: { id: state },
+      });
+      window.open(href, "_blank");
+    }
   },
 };
 </script>

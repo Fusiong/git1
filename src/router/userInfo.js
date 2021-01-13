@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Info from '../components/Info.vue'
 import pass from '../components/pass.vue'
 import addresses from '../components/addresses.vue'
+import myorder from '../components/myorder.vue'
 
 
 Vue.use(VueRouter)
@@ -23,6 +24,10 @@ const routes = [
     path: '/addresses',
     name: "addresses",
     component: addresses,
+  },{
+    path: '/myorder',
+    name: "myorder",
+    component: myorder,
   }
 
 ]

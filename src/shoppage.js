@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import shoppage from './shoppage.vue'
 import router from './router/shoppage.js'
 import './plugins/element.js'
 import './assets/css/global.css'
@@ -10,6 +9,5 @@ Vue.prototype.$http=axios
 
 new Vue({
   router,
-  render: h => h(shoppage)
-}).$mount('#shoppage')
+})
 

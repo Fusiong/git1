@@ -16,8 +16,11 @@
               <i class="el-icon-goods"></i>我的订单
             </template>
             <el-menu-item-group>
+
+              <router-link class="listrouter" to="/myorder">
               <el-menu-item index="1-1">订单确认</el-menu-item>
-              <el-menu-item index="1-2">退款申请</el-menu-item>
+              </router-link>
+
             </el-menu-item-group>
           </el-submenu>
 

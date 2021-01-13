@@ -429,7 +429,7 @@ export default {
   width: 750px;
   text-align: center;
   float: left;
-  margin-left: 50px;
+  margin-left: 160px;
 }
 
 .cutdiv li {

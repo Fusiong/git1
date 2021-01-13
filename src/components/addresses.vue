@@ -103,13 +103,25 @@ export default {
   },
   methods: {
     sumbit() {
+    let username = sessionStorage.getItem("userName");
+  
+    if (username == "" || username == null) {
+      alert("请先登录");
+      window.location.href = "login";
+      return;
+    }
+
       if (this.isaddress && this.addresses != "") {
         let data = new FormData();
         let addre = this.province + this.city + this.area + this.addresses;
         let account = sessionStorage.getItem("account");
+        const that = this;
         console.log(addre);
         data.append("username", account);
         data.append("addre", addre);
+
+        let username = sessionStorage.getItem("userName");
+        let phone = sessionStorage.getItem("phone");
 
         this.$axios
           .post("http://localhost/Vue/vue05/public/addresses.php", data)
@@ -117,6 +129,12 @@ export default {
             console.log(response.data);
             if (response.data) {
               alert("添加地址成功");
+              let item={
+              name: username,
+              phone: phone,
+              address: addre,
+              }
+              this.tableData.push(item);
             } else {
               alert("填写的地址已满三个");
             }
@@ -126,21 +144,31 @@ export default {
       }
     },
     deleted(index, row) {
+    let username = sessionStorage.getItem("userName");
+  
+    if (username == "" || username == null) {
+      alert("请先登录");
+      window.location.href = "login";
+       return;
+    }
+
+
       let data = new FormData();
       let account = sessionStorage.getItem("account");
       let addre = row["address"];
       data.append("username", account);
       data.append("addre", addre);
-      const that=this;
+      const that = this;
       this.$axios
         .post("http://localhost/Vue/vue05/public/deleteadd.php", data)
         .then((response) => {
-           if(response.data){
-             alert("删除成功");
-             that.tableData=that.tableData.filter(item => item.address !== addre);
-           }else{
-             alert("删除失败");
-           }
+          if (response.data) {
+            alert("删除成功");
+            that.tableData = that.tableData.filter(
+              (item) => item.address !== addre);
+          } else {
+            alert("删除失败");
+          }
         });
     },
     Onpro(data) {
